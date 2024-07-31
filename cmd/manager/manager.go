@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"os"
 	"proj-13-design/internal/manager"
 	"proj-13-design/internal/processor"
@@ -16,15 +17,21 @@ func main() {
 		return
 	}
 
-	manager := manager.NewManager("password.txt")
-	processor := processor.NewProcessor(args, manager)
+	manager := manager.NewManager("passwords.txt")
+	processor := processor.NewProcessor(manager)
 
 	switch command := args[1]; command {
 	case "save":
-		processor.Save()
+		name := args[2]
+		password := args[3]
+
+		processor.Save(name, password)
 	case "list":
 		processor.List()
 	case "get":
-		processor.Get()
+		name := args[2]
+		processor.Get(name)
+	default:
+		fmt.Println("Invalid command. Available commands:\nsave <name> <password>\tsave password with certain name\nlist\tshow all saved passwords\nget <name>\tget password by name")
 	}
 }

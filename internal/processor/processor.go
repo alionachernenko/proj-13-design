@@ -8,18 +8,14 @@ import (
 )
 
 type Processor struct {
-	args    []string
 	manager *manager.Manager
 }
 
-func NewProcessor(args []string, manager *manager.Manager) *Processor {
-	return &Processor{args: args, manager: manager}
+func NewProcessor(manager *manager.Manager) *Processor {
+	return &Processor{manager: manager}
 }
 
-func (p *Processor) Save() {
-	name := p.args[2]
-	password := p.args[3]
-
+func (p *Processor) Save(name, password string) {
 	err := p.manager.WritePassword(name, password)
 
 	if err != nil {
@@ -27,8 +23,7 @@ func (p *Processor) Save() {
 	}
 }
 
-func (p *Processor) Get() {
-	name := p.args[2]
+func (p *Processor) Get(name string) {
 	password := p.manager.GetPassword(name)
 
 	fmt.Println(password)
