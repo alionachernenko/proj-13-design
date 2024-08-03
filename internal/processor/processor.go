@@ -8,10 +8,10 @@ import (
 )
 
 type Processor struct {
-	manager *manager.Manager
+	manager manager.PasswordManager
 }
 
-func NewProcessor(manager *manager.Manager) *Processor {
+func NewProcessor(manager manager.PasswordManager) *Processor {
 	return &Processor{manager: manager}
 }
 

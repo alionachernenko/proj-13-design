@@ -28,6 +28,7 @@ func main() {
 		processor.Save(name, password)
 	case "list":
 		processor.List()
+
 	case "get":
 		name := args[2]
 		processor.Get(name)
