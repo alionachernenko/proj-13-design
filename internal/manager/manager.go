@@ -10,11 +10,6 @@ import (
 
 type Passwords map[string]string
 
-type PasswordManager interface {
-	WritePassword(name, password string) error
-	GetPasswords() (Passwords, error)
-	GetPassword(name string) string
-}
 
 type Manager struct {
 	filename string

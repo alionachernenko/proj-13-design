@@ -7,11 +7,16 @@ import (
 	"github.com/rs/zerolog/log"
 )
 
+type PasswordManager interface {
+	WritePassword(name, password string) error
+	GetPasswords() (manager.Passwords, error)
+	GetPassword(name string) string
+}
 type Processor struct {
-	manager manager.PasswordManager
+	manager PasswordManager
 }
 
-func NewProcessor(manager manager.PasswordManager) *Processor {
+func NewProcessor(manager PasswordManager) *Processor {
 	return &Processor{manager: manager}
 }
 
